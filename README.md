@@ -1,6 +1,7 @@
 # Detector de Níveis de Queimada - ESP32
 
 Sistema de monitoramento ambiental que avalia o risco de incêndio florestal com base em temperatura, gases (simulando CO/VOC) e umidade. Utiliza um **ESP32**, sensor **DHT22**, sensor de gás **MQ-x** (simulado), **LDR** e display **OLED SSD1306**. Os **LEDs** indicam o nível de alerta em tempo real
+<img width="782" height="802" alt="image" src="https://github.com/user-attachments/assets/a8617d0a-5b43-4d91-8a7c-485d355c2875" />
 
 ---
 
