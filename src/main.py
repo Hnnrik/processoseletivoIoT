@@ -107,7 +107,7 @@ while True:
     try:
         tempo_atual = time.ticks_ms()
         tempo_passado = time.ticks_diff(tempo_atual, inicio)
-        if tempo_passado >=9000:
+        if tempo_passado >=8000:
             print("Teste")
             break
         t = t + 0.2
