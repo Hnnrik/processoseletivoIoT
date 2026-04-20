@@ -105,11 +105,7 @@ inicio = time.ticks_ms()
 
 while True:
     try:
-        tempo_atual = time.ticks_ms()
-        tempo_passado = time.ticks_diff(tempo_atual, inicio)
-        if tempo_passado >=8000:
-            print("Teste")
-            break
+
         t = t + 0.2
         temp = 25 + 20 * abs(math.sin(t))
         gas_value = int(5000 + 50000 * abs(math.sin(t/2)))
@@ -151,7 +147,8 @@ while True:
         oled.show()
 
         time.sleep(0.4)
-
+        print("Teste")
+        break
 
     except Exception as e:
         print("Erro:", e)
