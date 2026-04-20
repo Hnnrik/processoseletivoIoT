@@ -32,8 +32,9 @@ inicio = time.ticks_ms()
 while True:
     tempo_atual = time.ticks_ms()
     tempo_passado = time.ticks_diff(tempo_atual, inicio)
-    if tempo_passado >=5000:
+    if tempo_passado >=9000:
         print("Teste")
+        break
 
     try:
         # Leitura real dos sensores (descomente para hardware real)
