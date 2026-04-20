@@ -29,8 +29,15 @@ def piscar(led, tempo=0.3):
     time.sleep(tempo)
 
 t = 0
+inicio = time.ticks_ms()
 
 while True:
+
+    tempo_atual = time.ticks_ms()
+    tempo_passado = time.ticks_diff(tempo_atual, inicio)
+    if tempo_passado >= 20000:
+        break
+
     try:
         # aqui é a captação real dos sensores
         dht_sensor.measure()
