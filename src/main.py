@@ -35,9 +35,6 @@ while True:
 
     tempo_atual = time.ticks_ms()
     tempo_passado = time.ticks_diff(tempo_atual, inicio)
-    if tempo_passado >= 1000:
-        print("Teste")
-        break
 
     try:
         # aqui é a captação real dos sensores
@@ -114,8 +111,11 @@ while True:
 
         time.sleep(0.4)
 
+        print("Teste")
+
     except Exception as e:
 
         print("Erro:", e)
         time.sleep(2)
 
+print("Teste")
