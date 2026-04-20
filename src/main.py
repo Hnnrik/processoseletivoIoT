@@ -109,10 +109,8 @@ while True:
         time.sleep(0.4)
 
         print("Teste")
-
+        break
     except Exception as e:
 
         print("Erro:", e)
         time.sleep(2)
-
-print("Teste")
