@@ -38,17 +38,14 @@ while True:
 
     try:
         # aqui é a captação real dos sensores
-        dht_sensor.measure()
-        temp = dht_sensor.temperature()
+        # dht_sensor.measure()
+        # temp = dht_sensor.temperature()
  
-        hum = dht_sensor.humidity()
-        gas_value = gas.read_u16()
-        luz = ldr.read_u16()
-
+        # hum = dht_sensor.humidity()
+        # gas_value = gas.read_u16()
+        # luz = ldr.read_u16()
 
         t = t+0.1
-
-
         # variação dos valores para demonstração do funcionamento
 
         temp=25 + 20 * abs(math.sin( t))      # 25°C a 45°C 
