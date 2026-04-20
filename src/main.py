@@ -35,7 +35,7 @@ while True:
 
     tempo_atual = time.ticks_ms()
     tempo_passado = time.ticks_diff(tempo_atual, inicio)
-    if tempo_passado >= 9300:
+    if tempo_passado >= 9000:
         break
 
     try:
@@ -111,7 +111,7 @@ while True:
 
         oled.show()
 
-        time.sleep(1)
+        time.sleep(0.4)
 
     except Exception as e:
 
