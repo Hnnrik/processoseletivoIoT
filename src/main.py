@@ -30,12 +30,6 @@ t = 0
 inicio = time.ticks_ms()
 
 while True:
-    tempo_atual = time.ticks_ms()
-    tempo_passado = time.ticks_diff(tempo_atual, inicio)
-    if tempo_passado >=1000:
-        print("Teste")
-        break
-
     try:
         # Leitura real dos sensores (descomente para hardware real)
         # dht_sensor.measure()
@@ -91,6 +85,8 @@ while True:
         oled.show()
 
         time.sleep(0.4)
+        print("Teste")
+        break
 
 
     except Exception as e:
