@@ -102,10 +102,10 @@ def piscar(led, tempo=0.3):
 
 t = 0
 
-for i in range(0,10):
+for i in range(0,5):
     try:
         
-        t = t + 0.3
+        t = t + 0.4
         temp = 25 + 20 * abs(math.sin(t))
         gas_value = int(5000 + 50000 * abs(math.sin(t/2)))
         hum = 50 + 30 * abs(math.sin(t/3))
