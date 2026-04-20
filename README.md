@@ -4,8 +4,23 @@ Sistema de monitoramento ambiental que avalia o risco de incêndio florestal com
 <img width="782" height="802" alt="image" src="https://github.com/user-attachments/assets/a8617d0a-5b43-4d91-8a7c-485d355c2875" />
 
 ---
+## 1 Visao Geral da Solucao
 
-## Significado dos LEDs
+**Objetivo do projeto**  
+Desenvolver um sistema embarcado de baixo custo para monitorar condicoes ambientais (temperatura, gases e luminosidade) e classificar o risco de incendio florestal em cinco niveis, utilizando LEDs e display para alerta local.
+
+**O que o sistema embarcado simulado faz**  
+- Le dados simulados de sensores (DHT22, sensor de gas, LDR) ou reais quando conectado.
+- Classifica o risco em: `NORMAL`, `ALTERACAO`, `MEDIO`, `CRITICO` ou `EXTREMO`.
+- Aciona LEDs coloridos (azul, amarelo, vermelho) com diferentes padroes (fixo/piscante).
+- Exibe as leituras e o estado atual em um display OLED SSD1306.
+- Envia uma mensagem de teste (`"Teste"`) pela serial para validacao em integracao continua (CI).
+
+**Como o usuario interage**  
+- Visualmente, atraves dos LEDs e do display.
+- Futuramente, por meio de um modulo LoRa e um dashboard central (previsto em implementacoes futuras).
+
+**Significado dos LEDs**
 
 | LED      | Cor   | Significado                                                                 |
 |----------|-------|-----------------------------------------------------------------------------|
@@ -80,5 +95,62 @@ Em Utilização na real, a placa com seus componente seriam colocados dentro de 
 <img width="1188" height="735" alt="image" src="https://github.com/user-attachments/assets/2536dcf9-76a3-446a-aeff-946b6366e3fa" />
 
 ---
-## Implementações futuras.
-Criação de um dispositivo central ligado a um dashboard. Os sipositivos de coleta seriam conectado ao dispositivo servidor via conexão sem fio.
+## 4 Decisoes Tecnicas Relevantes
+
+### Organizacao do codigo
+- **Modularizacao com funcoes** – `apagar_todos()` e `piscar()` para controle reutilizavel dos LEDs.
+- **Classe SSD1306_I2C implementada internamente** – evita dependencia de bibliotecas externas (que nao estao disponiveis no ambiente MicroPython do Wokwi por padrao).
+- **Separacao entre valores simulados e leituras reais** – linhas de leitura real comentadas, mantendo a simulacao funcional para CI.
+
+### Uso de constantes e estados
+- As faixas de decisao foram definidas como numeros inteiros diretos no codigo (simplificacao didatica).
+- A logica de estados utiliza `if/elif/else` para garantir que apenas uma condicao seja aplicada (evita sobreposicao).
+
+### Estrategia para temporizacao
+- `time.sleep(0.4)` no loop para atualizacao dos sensores e display sem sobrecarga.
+- O programa executa apenas **uma iteracao** (`break` apos `print("Teste")`) quando usado em CI, garantindo que o timeout nunca seja atingido.
+
+### Por que usar valores simulados no CI?
+- O driver do DHT22 no Wokwi pode travar se o sensor nao estiver perfeitamente conectado ou se houver bug no simulador. Para garantir robustez nos testes automatizados, optou-se por simular os valores matematicamente (seno/cosseno), mantendo a logica de classificacao totalmente funcional.
+
+---
+
+## 5 Resultados Obtidos
+
+### O que funciona corretamente
+- Classificacao dos cinco niveis de risco com base em valores simulados.
+- Acionamento correto dos LEDs (fixo ou piscante) conforme o estado.
+- Exibicao de temperatura, umidade, gas, luz e estado no display OLED.
+- Impressao de `"Teste"` na serial dentro de 1 segundo, validando o CI.
+- Execucao sem erros no simulador Wokwi e no GitHub Actions (apos correcao do `ImportError` do SSD1306).
+
+### Requisitos atendidos
+- Monitoramento continuo de parametros ambientais.
+- Alerta visual local (LEDs + display).
+- Baixo custo e possibilidade de alimentacao solar + LoRa (descrito como uso pratico futuro).
+- Documentacao completa para reproducao e entendimento.
+
+### Resultado observado na simulacao do Wokwi
+- Ao executar o codigo no Wokwi, o display mostra valores variando periodicamente (temperatura entre 25°C e 45°C, gas entre 5k e 55k, etc.).
+- Os LEDs mudam de acordo com o estado simulado a cada 0,4 segundos.
+- O monitor serial exibe `"Teste"` imediatamente e a simulacao termina sem timeout.
+
+---
+
+## 6 Comentarios Adicionais
+
+### Dificuldades encontradas
+- **Importacao da biblioteca `ssd1306`** – o ambiente MicroPython do Wokwi nao a inclui; foi necessario reimplementar a classe internamente.
+- **Travamento do DHT22 simulado** – a chamada `measure()` bloqueava para sempre. Solucao: usar valores simulados no CI.
+- **Timeout de 5 minutos no plano gratuito** – exigiu que o programa imprimisse `"Teste"` o mais rapido possivel (apos 1 iteracao).
+
+### Limitacoes da solucao atual
+- Os valores dos sensores sao simulados; para uso real, e necessario descomentar as leituras e garantir o hardware correto.
+- O codigo nao implementa comunicacao LoRa ou envio para dashboard (apenas indicado como melhoria futura).
+- A classificacao e baseada apenas em temperatura e gas – umidade e luz sao exibidas mas nao influenciam o estado.
+
+### Melhorias que seriam feitas com mais tempo
+- Implementar um filtro de media movel para suavizar os valores dos sensores.
+- Adicionar um modo de baixo consumo para operacao com bateria solar.
+- Integrar um modulo LoRa real (ex.: SX1278) e um protocolo simples de transmissao.
+- Criar um dashboard web (via ESP32 com Wi-Fi) para visualizacao remota.
