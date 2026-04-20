@@ -4,7 +4,7 @@ Sistema de monitoramento ambiental que avalia o risco de incêndio florestal com
 
 ---
 
-## 🚦 Significado dos LEDs
+## Significado dos LEDs
 
 | LED      | Cor   | Significado                                                                 |
 |----------|-------|-----------------------------------------------------------------------------|
