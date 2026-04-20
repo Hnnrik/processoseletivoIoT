@@ -49,7 +49,6 @@ graph TD
 
 **Estrutura de estados e temporizações**  
 - **Máquina de Estados**: Implementada através de uma estrutura de controle `if/elif`, garantindo que o sistema sempre esteja em um estado determinístico.
-- **Temporização Não-Bloqueante**: Diferente do uso tradicional de `time.sleep()`, o projeto utiliza a função `wait_non_blocking(duration_ms)`. Esta função monitora o tempo decorrido via `time.ticks_ms()`, permitindo que o processador permaneça ativo e responsivo.
 
 **Interação entre componentes**  
 O **ESP32** centraliza a lógica, comunicando-se com o display SSD1306 via protocolo **I2C** (SDA/SCL) e lendo sensores analógicos (Gas/LDR) via conversores ADC de 12 bits.
