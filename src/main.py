@@ -76,14 +76,14 @@ class SSD1306_I2C:
         self.write_cmd(self.height // 8 - 1)
         self.write_data(self.buffer)
 
-# ---------- Configuração dos pinos (ESP32) ----------
+
 i2c = I2C(0, scl=Pin(19), sda=Pin(18))
-oled = SSD1306_I2C(128, 64, i2c)   # Usando a classe local
+oled = SSD1306_I2C(128, 64, i2c)   
 
 dht_sensor = dht.DHT22(Pin(4))
 
-gas = ADC(Pin(34))   # pino 34 (ADC1)
-ldr = ADC(Pin(35))   # pino 35 (ADC1)
+gas = ADC(Pin(34))   
+ldr = ADC(Pin(35))  
 
 led_azul = Pin(15, Pin.OUT)
 led_amarelo = Pin(16, Pin.OUT)
@@ -105,14 +105,16 @@ inicio = time.ticks_ms()
 
 while True:
     try:
-        # Valores simulados (para CI/Wokwi)
-        t = t + 0.1
+        tempo_atual = time.ticks_ms()
+        tempo_passado = time.ticks_diff(tempo_atual, inicio)
+        if tempo_passado >=20000:
+            print("Teste")
+        t = t + 0.2
         temp = 25 + 20 * abs(math.sin(t))
         gas_value = int(5000 + 50000 * abs(math.sin(t/2)))
         hum = 50 + 30 * abs(math.sin(t/3))
         luz = int(10000 + 50000 * abs(math.cos(t)))
 
-        # Lógica de estados
         if (gas_value <= 10000) or (temp <= 30):
             estado = "NORMAL"
         if (gas_value > 10000 and gas_value <= 20000) or (temp > 30 and temp <= 35):
@@ -149,7 +151,7 @@ while True:
 
         time.sleep(0.4)
         print("Teste")
-        break   # CI espera o texto e depois encerra
+        break  
 
     except Exception as e:
         print("Erro:", e)
