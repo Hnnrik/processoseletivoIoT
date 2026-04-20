@@ -74,6 +74,10 @@ Este sistema contribui diretamente para a proteção do meio ambiente:
 ## Utilização na prática.
 Em Utilização na real, a placa com seus componente seriam colocados dentro de uma caixa plástica de material reciclado, alimentados por uma bateria recarregável por uma placa solar. Além disso a comunicação seria feita por meio de um módulo Lora para longas distâncias.
 
+<img width="1059" height="749" alt="image" src="https://github.com/user-attachments/assets/bb33e44f-20ae-4e61-88d9-dab21de65ac8" />
+
+<img width="1188" height="735" alt="image" src="https://github.com/user-attachments/assets/2536dcf9-76a3-446a-aeff-946b6366e3fa" />
+
 ---
 ## Implementações futuras.
 Criação de um dispositivo central ligado a um dashboard. Os sipositivos de coleta seriam conectado ao dispositivo servidor via conexão sem fio.
