@@ -101,12 +101,11 @@ def piscar(led, tempo=0.3):
     time.sleep(tempo)
 
 t = 0
-inicio = time.ticks_ms()
 
-while True:
+for i in range(0,10):
     try:
-
-        t = t + 0.2
+        
+        t = t + 0.3
         temp = 25 + 20 * abs(math.sin(t))
         gas_value = int(5000 + 50000 * abs(math.sin(t/2)))
         hum = 50 + 30 * abs(math.sin(t/3))
@@ -147,9 +146,9 @@ while True:
         oled.show()
 
         time.sleep(0.4)
-        print("Teste")
-        break
+
 
     except Exception as e:
         print("Erro:", e)
         time.sleep(2)
+print("Teste")
