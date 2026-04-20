@@ -20,9 +20,6 @@ O firmware monitora dados de temperatura, umidade, concentração de gases CO/fu
 
 **Como o usuário interage com ele**  
 A interação é monitorada localmente via display SSD1306. O usuário pode observar as variações das métricas ambientais e o status de risco ("NORMAL" até "EXTREMO"). Os LEDs azul, amarelo e vermelho servem como indicadores de status de alta visibilidade à distância.
-<img width="1059" height="749" alt="image" src="https://github.com/user-attachments/assets/bb33e44f-20ae-4e61-88d9-dab21de65ac8" />
-
-<img width="1188" height="735" alt="image" src="https://github.com/user-attachments/assets/2536dcf9-76a3-446a-aeff-946b6366e3fa" />
 
 ---
 
@@ -106,6 +103,10 @@ A integração do driver do SSD1306 sem bibliotecas externas exigiu a reimplemen
 **Melhorias Futuras**  
 - Implementação de **Interrupções de Hardware (IRQs)** para leitura de sensores de pulso.
 - Integração com protocolo **MQTT** para envio de alertas via Wi-Fi ou **LoRa** para longas distâncias em áreas rurais.
+- Em uma implementação real, seria:
+<img width="1059" height="749" alt="image" src="https://github.com/user-attachments/assets/bb33e44f-20ae-4e61-88d9-dab21de65ac8" />
+
+<img width="1188" height="735" alt="image" src="https://github.com/user-attachments/assets/2536dcf9-76a3-446a-aeff-946b6366e3fa" />
 
 ---
 ✅ Este relatório faz parte da avaliação técnica.
